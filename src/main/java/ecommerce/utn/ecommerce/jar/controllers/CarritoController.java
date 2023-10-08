@@ -12,6 +12,11 @@ import java.util.List;
 public class CarritoController {
     @Autowired
     private CarritoService carritoService;
+
+    @GetMapping("/")
+    public String welcome(){
+        return "Bienvenidos al ecommerce de Terror Al Ejecutar, estamos trabajando para su comodidad";
+    }
     @GetMapping("/api/carrito")
     public List<CarritoDto> findAll(){
         return carritoService.findAll();
