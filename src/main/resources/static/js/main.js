@@ -90,7 +90,6 @@ if (productosEnCarritoLS) {
 }
 
 function agregarAlCarrito(e) {
-
     Toastify({
         text: "Producto agregado",
         duration: 3000,
@@ -111,48 +110,78 @@ function agregarAlCarrito(e) {
         onClick: function(){} // Callback after click
       }).showToast();
 
-    const idBoton = e.currentTarget.id;
+    let productoEnCarritoDto = {};
+    const idBoton = parseInt(e.currentTarget.id, 10); // 10 es la base numérica (decimal) en este caso
+
     const productoAgregado = productos.find(producto => producto.id === idBoton);
-    
-    fetch("api/carrito", {
-        method: "post",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-      
-        //make sure to serialize your JSON body
-        body: JSON.stringify({
-            "userId": 1,
-        "productosList": [
-            {
-                "productoId": 3,
-                "quantity": 3
-            },{
-                "productoId": 4,
-                "quantity": 4
-            }
-        ]
-        })
-      })
-      .then( (response) => { 
-        console.log("producto agregado con exito")
-         //do something awesome that makes the world a better place
-      });
+    console.log(productoAgregado)
+    console.log(productos)
+    console.log(idBoton)
+
     if(productosEnCarrito.some(producto => producto.id === idBoton)) {
         const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
-        productosEnCarrito[index].cantidad++;
+        productosEnCarrito[index].quantity++;
     } else {
-        productoAgregado.cantidad = 1;
+        productoAgregado.quantity = 1;
         productosEnCarrito.push(productoAgregado);
     }
+    
+    // fetch("api/carrito", {
+    //     method: "post",
+    //     headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //     },
 
-    actualizarNumerito();
+    //     //make sure to serialize your JSON body
+    //     body: JSON.stringify({
+    //         "userId": 2,
+    //         "productosList": [
+    //             {
+    //                 "productoId": productoAgregado.id,
+    //                 "quantity": productoAgregado.quantity
+    //             }
+    //         ]
+    //     })
+    // })
+    // .then( (response) => {
+    //     console.log("carrito agregado con exito")
+    // //do something awesome that makes the world a better plac
+    // });
+    // productoEnCarritoDto = {
+    //     "userId": 2,
+    //     "productosList": [
+    //         {
+    //             "productoId": productoAgregado.id,
+    //             "quantity": productoAgregado.quantity
+    //         }
+    //     ]
+    // };
 
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-}
+    // Llamar a la función asíncrona para enviar los datos
+    // (async () => {
+    //     const response = await fetch("api/carrito", {
+    //         method: "post",
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             productoEnCarritoDto
+    //         })
+    //     });
+    //     const carritoProductos = await response.json();
+    //     console.log(carritoProductos);
+    // })();
+    console.log(productosEnCarrito)
+
+          actualizarNumerito();
+          localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+
+};
+
 
 function actualizarNumerito() {
-    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + 1, 0);
+    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.quantity, 0);
     numerito.innerText = nuevoNumerito;
 }
