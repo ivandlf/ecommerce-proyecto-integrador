@@ -22,12 +22,7 @@ function cargarProductosCarrito() {
         contenedorCarritoProductos.innerHTML = "";
     
         productosEnCarrito.forEach(producto => {
-            let productoObj = {
-                "productoId": producto.id,
-                "quantity": producto.quantity
-            }
-            
-            productoList.push(productoObj)
+           
 
             const div = document.createElement("div");
             div.classList.add("carrito-producto");
@@ -133,8 +128,26 @@ function actualizarTotal() {
     total.innerText = `$${totalCalculado}`;
 }
 
+function agregarListaProducto(){
+    productoList.forEach(producto => {
+        let productoObj = {
+            "productoId": producto.id,
+            "quantity": producto.quantity
+        }
+    productoList.push(productoObj)
+    })
+    
+}
+
 botonComprar.addEventListener("click", comprarCarrito);
 function comprarCarrito() {
+    productosEnCarrito.forEach(producto => {
+        let productoObj = {
+            "productoId": producto.id,
+            "quantity": producto.quantity
+        }
+    productoList.push(productoObj)
+    })
     console.log(productoList)
     fetch("api/carrito", {
         method: "post",
