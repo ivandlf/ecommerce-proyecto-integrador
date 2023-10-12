@@ -1,189 +1,19 @@
 // PRODUCTOS
-const productos = [
-    // Abrigos
-    {
-        id: "abrigo-01",
-        titulo: "Abrigo 01",
-        imagen: "./img/abrigos/01.jpg",
-        categoria: {
-            nombre: "Abrigos",
-            id: "abrigos"
+let productos = '';
+async function getProductos(){
+    const request = await fetch('api/producto',{
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type':'application/json'
         },
-        precio: 1000
-    },
-    {
-        id: "abrigo-02",
-        titulo: "Abrigo 02",
-        imagen: "./img/abrigos/02.jpg",
-        categoria: {
-            nombre: "Abrigos",
-            id: "abrigos"
-        },
-        precio: 1000
-    },
-    {
-        id: "abrigo-03",
-        titulo: "Abrigo 03",
-        imagen: "./img/abrigos/03.jpg",
-        categoria: {
-            nombre: "Abrigos",
-            id: "abrigos"
-        },
-        precio: 1000
-    },
-    {
-        id: "abrigo-04",
-        titulo: "Abrigo 04",
-        imagen: "./img/abrigos/04.jpg",
-        categoria: {
-            nombre: "Abrigos",
-            id: "abrigos"
-        },
-        precio: 1000
-    },
-    {
-        id: "abrigo-05",
-        titulo: "Abrigo 05",
-        imagen: "./img/abrigos/05.jpg",
-        categoria: {
-            nombre: "Abrigos",
-            id: "abrigos"
-        },
-        precio: 1000
-    },
-    // Camisetas
-    {
-        id: "camiseta-01",
-        titulo: "Camiseta 01",
-        imagen: "./img/camisetas/01.jpg",
-        categoria: {
-            nombre: "Camisetas",
-            id: "camisetas"
-        },
-        precio: 1000
-    },
-    {
-        id: "camiseta-02",
-        titulo: "Camiseta 02",
-        imagen: "./img/camisetas/02.jpg",
-        categoria: {
-            nombre: "Camisetas",
-            id: "camisetas"
-        },
-        precio: 1000
-    },
-    {
-        id: "camiseta-03",
-        titulo: "Camiseta 03",
-        imagen: "./img/camisetas/03.jpg",
-        categoria: {
-            nombre: "Camisetas",
-            id: "camisetas"
-        },
-        precio: 1000
-    },
-    {
-        id: "camiseta-04",
-        titulo: "Camiseta 04",
-        imagen: "./img/camisetas/04.jpg",
-        categoria: {
-            nombre: "Camisetas",
-            id: "camisetas"
-        },
-        precio: 1000
-    },
-    {
-        id: "camiseta-05",
-        titulo: "Camiseta 05",
-        imagen: "./img/camisetas/05.jpg",
-        categoria: {
-            nombre: "Camisetas",
-            id: "camisetas"
-        },
-        precio: 1000
-    },
-    {
-        id: "camiseta-06",
-        titulo: "Camiseta 06",
-        imagen: "./img/camisetas/06.jpg",
-        categoria: {
-            nombre: "Camisetas",
-            id: "camisetas"
-        },
-        precio: 1000
-    },
-    {
-        id: "camiseta-07",
-        titulo: "Camiseta 07",
-        imagen: "./img/camisetas/07.jpg",
-        categoria: {
-            nombre: "Camisetas",
-            id: "camisetas"
-        },
-        precio: 1000
-    },
-    {
-        id: "camiseta-08",
-        titulo: "Camiseta 08",
-        imagen: "./img/camisetas/08.jpg",
-        categoria: {
-            nombre: "Camisetas",
-            id: "camisetas"
-        },
-        precio: 1000
-    },
-    // Pantalones
-    {
-        id: "pantalon-01",
-        titulo: "Pantalón 01",
-        imagen: "./img/pantalones/01.jpg",
-        categoria: {
-            nombre: "Pantalones",
-            id: "pantalones"
-        },
-        precio: 1000
-    },
-    {
-        id: "pantalon-02",
-        titulo: "Pantalón 02",
-        imagen: "./img/pantalones/02.jpg",
-        categoria: {
-            nombre: "Pantalones",
-            id: "pantalones"
-        },
-        precio: 1000
-    },
-    {
-        id: "pantalon-03",
-        titulo: "Pantalón 03",
-        imagen: "./img/pantalones/03.jpg",
-        categoria: {
-            nombre: "Pantalones",
-            id: "pantalones"
-        },
-        precio: 1000
-    },
-    {
-        id: "pantalon-04",
-        titulo: "Pantalón 04",
-        imagen: "./img/pantalones/04.jpg",
-        categoria: {
-            nombre: "Pantalones",
-            id: "pantalones"
-        },
-        precio: 1000
-    },
-    {
-        id: "pantalon-05",
-        titulo: "Pantalón 05",
-        imagen: "./img/pantalones/05.jpg",
-        categoria: {
-            nombre: "Pantalones",
-            id: "pantalones"
-        },
-        precio: 1000
-    }
-];
+    });
+     productos = await request.json();
+console.log(request + "request")
+console.log(productos + "productos")
+cargarProductos(productos);
+}
+getProductos();
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
@@ -202,13 +32,13 @@ function cargarProductos(productosElegidos) {
     contenedorProductos.innerHTML = "";
 
     productosElegidos.forEach(producto => {
-
+        
         const div = document.createElement("div");
         div.classList.add("producto");
         div.innerHTML = `
-            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
+            <img class="producto-imagen" src="" alt="${producto.nombre}">
             <div class="producto-detalles">
-                <h3 class="producto-titulo">${producto.titulo}</h3>
+                <h3 class="producto-titulo">${producto.nombre}</h3>
                 <p class="producto-precio">$${producto.precio}</p>
                 <button class="producto-agregar" id="${producto.id}">Agregar</button>
             </div>
@@ -228,9 +58,9 @@ botonesCategorias.forEach(boton => {
         e.currentTarget.classList.add("active");
 
         if (e.currentTarget.id != "todos") {
-            const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
-            tituloPrincipal.innerText = productoCategoria.categoria.nombre;
-            const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
+            const productoCategoria = productos.find(producto => producto.categoria === e.currentTarget.id);
+            tituloPrincipal.innerText = productoCategoria.categoria;
+            const productosBoton = productos.filter(producto => producto.categoria === e.currentTarget.id);
             cargarProductos(productosBoton);
         } else {
             tituloPrincipal.innerText = "Todos los productos";
@@ -283,7 +113,32 @@ function agregarAlCarrito(e) {
 
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);
-
+    
+    fetch("api/carrito", {
+        method: "post",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      
+        //make sure to serialize your JSON body
+        body: JSON.stringify({
+            "userId": 1,
+        "productosList": [
+            {
+                "productoId": 3,
+                "quantity": 3
+            },{
+                "productoId": 4,
+                "quantity": 4
+            }
+        ]
+        })
+      })
+      .then( (response) => { 
+        console.log("producto agregado con exito")
+         //do something awesome that makes the world a better place
+      });
     if(productosEnCarrito.some(producto => producto.id === idBoton)) {
         const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
         productosEnCarrito[index].cantidad++;
@@ -298,6 +153,6 @@ function agregarAlCarrito(e) {
 }
 
 function actualizarNumerito() {
-    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + 1, 0);
     numerito.innerText = nuevoNumerito;
 }
