@@ -46,6 +46,17 @@ aside {
     justify-content: space-between;
 }
 
+.boton-menu.boton-categoria.active{
+    background-color:rgba(0, 0, 0, .75);
+    color:white;
+}
+
+.boton-menu.boton-volver{
+    background-color:rgba(0, 0, 0, .75);
+    color:white;
+    border-radius: 20px;
+}
+
 .logo {
     font-weight: 400;
     font-size: 1.3rem;
@@ -127,6 +138,8 @@ aside {
 .texto-footer {
     color: var(--clr-main-light);
     font-size: .85rem;
+    color: black;
+    font-weight: bold;
 }
 
 main {
@@ -171,8 +184,8 @@ main {
 
 .producto-agregar {
     border: 0;
-    background-color: var(--clr-white);
-    color: var(--clr-main);
+    background-color:rgba(0, 0, 0, .75);
+    color:white;
     padding: .4rem;
     text-transform: uppercase;
     border-radius: 2rem;
