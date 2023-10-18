@@ -1,19 +1,56 @@
 // PRODUCTOS
-let productos = '';
-async function getProductos(){
-    const request = await fetch('api/producto',{
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type':'application/json'
-        },
-    });
-     productos = await request.json();
-console.log(request + "request")
-console.log(productos + "productos")
-cargarProductos(productos);
+let productos = [];
+
+async function getProductos() {
+    try {
+        const response = await fetch('http://localhost:3000/api/productos', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (response.ok) {
+            productos = await response.json();
+            console.log("Productos:", productos);
+            cargarProductos(productos);
+        } else {
+            console.error("Error al obtener los productos. Código de estado:", response.status);
+        }
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+    }
 }
+
+// Ejecutar la función para obtener productos
 getProductos();
+
+// Función para cargar y mostrar los productos
+function cargarProductos(productosElegidos) {
+    const contenedorProductos = document.getElementById('contenedor-productos'); 
+
+    contenedorProductos.innerHTML = "";
+
+    productosElegidos.forEach(producto => {
+
+        const div = document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML = `
+            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.nombre}">
+            <div class="producto-detalles">
+                <h3 class="producto-titulo">${producto.nombre}</h3>
+                <p class="producto-precio">${producto.precio}</p>
+                <button class="producto-agregar" id="${producto.id}">Agregar</button>
+            </div>
+        `;
+
+        contenedorProductos.append(div);
+    });
+
+    actualizarBotonesAgregar();
+}
+
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
@@ -27,28 +64,7 @@ botonesCategorias.forEach(boton => boton.addEventListener("click", () => {
 }))
 
 
-function cargarProductos(productosElegidos) {
 
-    contenedorProductos.innerHTML = "";
-
-    productosElegidos.forEach(producto => {
-        
-        const div = document.createElement("div");
-        div.classList.add("producto");
-        div.innerHTML = `
-            <img class="producto-imagen" src="" alt="${producto.nombre}">
-            <div class="producto-detalles">
-                <h3 class="producto-titulo">${producto.nombre}</h3>
-                <p class="producto-precio">$${producto.precio}</p>
-                <button class="producto-agregar" id="${producto.id}">Agregar</button>
-            </div>
-        `;
-
-        contenedorProductos.append(div);
-    })
-
-    actualizarBotonesAgregar();
-}
 
 
 botonesCategorias.forEach(boton => {

@@ -25,5 +25,7 @@ public class Productos {
     private Integer stock;
     @Column(name = "codigo")
     private String codigo;
-
+    
+    @Column(name = "imagen")
+    private String imagen;
 }
