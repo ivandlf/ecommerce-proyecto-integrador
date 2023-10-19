@@ -9,8 +9,6 @@ async function getProductos(){
         },
     });
      productos = await request.json();
-console.log(request + "request")
-console.log(productos + "productos")
 cargarProductos(productos);
 }
 getProductos();
@@ -36,7 +34,7 @@ function cargarProductos(productosElegidos) {
         const div = document.createElement("div");
         div.classList.add("producto");
         div.innerHTML = `
-            <img class="producto-imagen" src="" alt="${producto.nombre}">
+            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.imagen}">
             <div class="producto-detalles">
                 <h3 class="producto-titulo">${producto.nombre}</h3>
                 <p class="producto-precio">$${producto.precio}</p>

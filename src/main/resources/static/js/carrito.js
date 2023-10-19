@@ -158,13 +158,12 @@ function comprarCarrito() {
 
         //make sure to serialize your JSON body
         body: JSON.stringify({
-            "userId": 2,
+            "userId": 1,
             "productosList": productoList
         })
     })
     .then( (response) => {
         console.log("carrito agregado con exito")
-    //do something awesome that makes the world a better plac
     });
 
     productosEnCarrito.length = 0;
