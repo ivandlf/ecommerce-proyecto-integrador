@@ -3,7 +3,7 @@ let productos = [];
 
 async function getProductos() {
     try {
-        const response = await fetch('http://localhost:3000/api/productos', {
+        const response = await fetch('api/producto', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
