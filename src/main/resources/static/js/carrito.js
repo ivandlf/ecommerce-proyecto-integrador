@@ -1,3 +1,6 @@
+
+
+
 let productosEnCarrito = localStorage.getItem("productos-en-carrito");
 productosEnCarrito = JSON.parse(productosEnCarrito);
 
@@ -153,7 +156,7 @@ function comprarCarrito() {
     productoList.push(productoObj)
     })
     console.log(productoList)
-    fetch("api/carrito", {
+    fetch("api/checkout/create-preference", {
         method: "post",
         headers: {
         'Accept': 'application/json',
@@ -162,13 +165,17 @@ function comprarCarrito() {
 
         //make sure to serialize your JSON body
         body: JSON.stringify({
-            "userId": 1,
-            "productosList": productoList
+            "name": "mani con chocolate",
+            "quantity":2,
+            "price": 200
         })
     })
-    .then( (response) => {
-        console.log("carrito agregado con exito")
-    });
+    .then((response) => response.text()) // Lee la respuesta como texto
+      .then((url) => {
+        console.log(url);
+        // Redirige el navegador a la URL
+        window.location.href = url;
+      })
 
     productosEnCarrito.length = 0;
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
