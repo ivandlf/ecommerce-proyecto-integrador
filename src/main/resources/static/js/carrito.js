@@ -136,25 +136,54 @@ function actualizarTotal() {
 }
 
 function agregarListaProducto(){
-    productoList.forEach(producto => {
+    productosEnCarrito.forEach(producto => {
         let productoObj = {
-            "productoId": producto.id,
-            "quantity": producto.quantity
+            "nombre": producto.nombre,
+            "quantity":producto.quantity,
+            "precio": producto.precio
         }
     productoList.push(productoObj)
+    console.log(productoList)
     })
     
 }
 
 botonComprar.addEventListener("click", comprarCarrito);
 function comprarCarrito() {
+    
+    agregarListaProducto();
+    let listaProductos = [];
+
     productosEnCarrito.forEach(producto => {
         let productoObj = {
             "productoId": producto.id,
-            "quantity": producto.quantity
+            "quantity":producto.quantity
         }
-    productoList.push(productoObj)
+    listaProductos.push(productoObj)
+    console.log(listaProductos)
     })
+
+    fetch("api/carrito", {
+        method: "post",
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+
+        //make sure to serialize your JSON body
+        body: JSON.stringify({
+            "userId": 1,
+            "productosList": listaProductos
+        })
+    })
+    .then( (response) => {
+        console.log("carrito agregado con exito")
+    });
+
+    const mp = new MercadoPago('APP_USR-132d9d07-1a00-419f-95da-5d6473e181c8');
+    const bricksBuilder = mp.bricks();
+ 
+
     console.log(productoList)
     fetch("api/checkout/create-preference", {
         method: "post",
@@ -165,17 +194,26 @@ function comprarCarrito() {
 
         //make sure to serialize your JSON body
         body: JSON.stringify({
-            "name": "mani con chocolate",
-            "quantity":2,
-            "price": 200
+            "productosList": productoList
         })
     })
     .then((response) => response.text()) // Lee la respuesta como texto
-      .then((url) => {
-        console.log(url);
+      .then((data) => {
+        preferenceId = data; // Guardar el id en la variable preferenceId
+        console.log(data);
         // Redirige el navegador a la URL
-        window.location.href = url;
+        //window.location.href = url;
+
+        // Actualizar el objeto de inicialización
+    mp.bricks().create("wallet", "wallet_container", {
+        initialization: {
+          preferenceId: preferenceId,
+        },
+      });
+
       })
+
+      
 
     productosEnCarrito.length = 0;
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));

@@ -1,7 +1,10 @@
 package ecommerce.utn.ecommerce.jar.controllers;
+import com.mercadopago.client.preference.PreferenceBackUrlsRequest;
 import com.mercadopago.client.preference.PreferenceItemRequest;
 import com.mercadopago.client.preference.PreferenceRequest;
 import ecommerce.utn.ecommerce.jar.dto.PreferenceItem;
+import ecommerce.utn.ecommerce.jar.dto.ProductoMPDTO;
+import ecommerce.utn.ecommerce.jar.models.Productos;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,32 +33,43 @@ public class CheckoutController {
         MercadoPagoConfig.setAccessToken(accessToken);
 
         try {
-            // Aquí configura la preferencia de acuerdo a tus necesidades // Puedes proporcionar la preferencia aquí
-
-
-            PreferenceItemRequest itemRequest =
-                    PreferenceItemRequest.builder()
-                            .id("1234")
-                            .title(preferenceItem.getName())
-                            .description("PS5")
-                            .pictureUrl("http://picture.com/PS5")
-                            .categoryId("games")
-                            .quantity(preferenceItem.getQuantity())
-                            .currencyId("ARS")
-                            .unitPrice(new BigDecimal(preferenceItem.getPrice()))
-                            .build();
             List<PreferenceItemRequest> items = new ArrayList<>();
-            items.add(itemRequest);
+            // Aquí configura la preferencia de acuerdo a tus necesidades // Puedes proporcionar la preferencia aquí
+            for (ProductoMPDTO producto:preferenceItem.getProductosList()) {
+                PreferenceItemRequest itemRequest =
+                        PreferenceItemRequest.builder()
+                                .id("1234")
+                                .title(producto.getNombre())
+                                .description("")
+                                .pictureUrl(producto.getImagen())
+                                .categoryId(producto.getCategoria())
+                                .quantity(producto.getQuantity())
+                                .currencyId("ARS")
+                                .unitPrice(new BigDecimal(producto.getPrecio()))
+                                .build();
+                items.add(itemRequest);
+                System.out.println(itemRequest);
+            }
+            PreferenceBackUrlsRequest backUrls =
+// ...
+                    PreferenceBackUrlsRequest.builder()
+                            .success("http://localhost:8080")
+                            .pending("https://www.seu-site/pending")
+                            .failure("https://www.seu-site/failure")
+                            .build();
             PreferenceRequest preferenceRequest = PreferenceRequest.builder()
-                    .items(items).build();
+                    .items(items).backUrls(backUrls).autoReturn("approved").build();
             PreferenceClient client = new PreferenceClient();
             Preference preference = client.create(preferenceRequest);
 
 
-            // Genera el código de Checkout Pro
-            String checkoutProCode = preference.getInitPoint();
 
-            return checkoutProCode;
+            PreferenceRequest request = PreferenceRequest.builder().backUrls(backUrls).build();
+// ...
+
+            System.out.println(preference.getId());
+
+            return preference.getId();
         } catch (MPException | MPApiException e) {
             // Manejo de excepciones
             e.printStackTrace();
