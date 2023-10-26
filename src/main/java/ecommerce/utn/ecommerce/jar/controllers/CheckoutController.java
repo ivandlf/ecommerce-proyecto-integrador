@@ -53,8 +53,8 @@ public class CheckoutController {
             PreferenceBackUrlsRequest backUrls =
 // ...
                     PreferenceBackUrlsRequest.builder()
-                            .success("http://localhost:8080")
-                            .pending("https://www.seu-site/pending")
+                            .success("https://ecommerce-prueba-production.up.railway.app/")
+                            .pending("https://ecommerce-prueba-production.up.railway.app/")
                             .failure("https://www.seu-site/failure")
                             .build();
             PreferenceRequest preferenceRequest = PreferenceRequest.builder()
