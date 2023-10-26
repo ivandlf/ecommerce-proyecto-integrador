@@ -27,7 +27,7 @@ public class CarritoController {
     @PostMapping("/api/carrito")
     public ResponseEntity<String> saveCarrito(@RequestBody CarritoDto carritoDto){
         carritoService.save(carritoDto);
-        return ResponseEntity.ok("carrito creado con exitoooo");
+        return ResponseEntity.ok("carrito creado");
     }
 
     @DeleteMapping("/api/carrito/{id}")

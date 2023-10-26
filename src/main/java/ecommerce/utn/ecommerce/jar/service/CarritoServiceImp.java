@@ -13,6 +13,7 @@ import ecommerce.utn.ecommerce.jar.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,6 +71,7 @@ public class CarritoServiceImp implements CarritoService{
                 carritoProductos.setCarrito(newCarrito);
                 carritoProductos.setProductos(productos);
                 carritoProductos.setQuantity(producto.getQuantity());
+                carritoProductos.setDateTime(LocalDateTime.now());
                 carritoProductosList.add(carritoProductos);
             }
             newCarrito.setTotal(total);

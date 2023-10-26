@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Entity
 @Table(name = "carrito_productos")
@@ -21,6 +23,8 @@ public class CarritoProductos {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productos_id")
     private Productos productos;
-
+    @Column(name = "quantity")
     private int quantity;
+    @Column(name = "date_time")
+    private LocalDateTime dateTime;
 }
