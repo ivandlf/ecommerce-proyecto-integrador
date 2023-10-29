@@ -4,12 +4,12 @@ import com.mercadopago.client.preference.PreferenceItemRequest;
 import com.mercadopago.client.preference.PreferenceRequest;
 import ecommerce.utn.ecommerce.jar.dto.PreferenceItem;
 import ecommerce.utn.ecommerce.jar.dto.ProductoMPDTO;
-import ecommerce.utn.ecommerce.jar.models.Productos;
+import ecommerce.utn.ecommerce.jar.exceptions.InvalidTokenException;
+import ecommerce.utn.ecommerce.jar.security.ValidateToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.mercadopago.MercadoPagoConfig;
 import com.mercadopago.client.preference.PreferenceClient;
@@ -24,15 +24,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/checkout")
 public class CheckoutController {
+    @Autowired
+    private ValidateToken validateToken;
 
     @Value("${mercadopago.access_token}") // Lee el token desde la configuración de Spring Boot
     private String accessToken;
 
     @PostMapping("/create-preference")
-    public String createPreference(@RequestBody PreferenceItem preferenceItem) {
+    public String createPreference(@RequestHeader(value="Authorization") String token, @RequestBody PreferenceItem preferenceItem) throws InvalidTokenException {
         MercadoPagoConfig.setAccessToken(accessToken);
-
+        if (!validateToken.isValidToken(token)) return "token incorrecto";
         try {
+
             List<PreferenceItemRequest> items = new ArrayList<>();
             // Aquí configura la preferencia de acuerdo a tus necesidades // Puedes proporcionar la preferencia aquí
             for (ProductoMPDTO producto:preferenceItem.getProductosList()) {
@@ -73,7 +76,7 @@ public class CheckoutController {
         } catch (MPException | MPApiException e) {
             // Manejo de excepciones
             e.printStackTrace();
-            return "Error al crear la preferencia.";
+            return "Error al crear la preferencia";
         }
     }
 }

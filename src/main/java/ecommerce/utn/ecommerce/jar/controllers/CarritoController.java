@@ -1,6 +1,8 @@
 package ecommerce.utn.ecommerce.jar.controllers;
 
 import ecommerce.utn.ecommerce.jar.dto.CarritoDto;
+import ecommerce.utn.ecommerce.jar.exceptions.InvalidTokenException;
+import ecommerce.utn.ecommerce.jar.security.ValidateToken;
 import ecommerce.utn.ecommerce.jar.service.CarritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@ import java.util.List;
 public class CarritoController {
     @Autowired
     private CarritoService carritoService;
+    @Autowired
+    private ValidateToken validateToken;
 
 
     @GetMapping("/api/carrito")
@@ -25,9 +29,16 @@ public class CarritoController {
     }
 
     @PostMapping("/api/carrito")
-    public ResponseEntity<String> saveCarrito(@RequestBody CarritoDto carritoDto){
-        carritoService.save(carritoDto);
-        return ResponseEntity.ok("carrito creado");
+    public ResponseEntity<String> saveCarrito(@RequestHeader(value="Authorization") String token,
+                                              @RequestBody CarritoDto carritoDto) throws InvalidTokenException {
+        if (!validateToken.isValidToken(token)){
+            System.out.println("este es el token en el endpoint saveCarrito" + token);
+            return ResponseEntity.badRequest().body("token invalido");
+        }else{
+            carritoService.save(carritoDto);
+            return ResponseEntity.ok("carrito creado");
+        }
+
     }
 
     @DeleteMapping("/api/carrito/{id}")
