@@ -167,7 +167,8 @@ function comprarCarrito() {
         method: "post",
         headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
         },
 
         //make sure to serialize your JSON body
@@ -177,7 +178,10 @@ function comprarCarrito() {
         })
     })
     .then( (response) => {
-        console.log("carrito agregado con exito")
+        if(response.ok){
+            console.log("carrito agregado con exito")
+        }
+        
     });
 
     const mp = new MercadoPago('APP_USR-132d9d07-1a00-419f-95da-5d6473e181c8');
@@ -189,7 +193,8 @@ function comprarCarrito() {
         method: "post",
         headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
         },
 
         //make sure to serialize your JSON body
@@ -197,19 +202,49 @@ function comprarCarrito() {
             "productosList": productoList
         })
     })
-    .then((response) => response.text()) // Lee la respuesta como texto
+    .then((response) => {
+        if (response.ok) {
+        // Si la respuesta es exitosa, procesa la respuesta como texto
+        return response.text();
+    } else if (response.status === 400) {
+        // Si la respuesta es un bad request (HTTP 400), maneja el error y muestra un mensaje de error
+        console.log("La solicitud ha fallado. Mensaje de error personalizado.");
+        // Puedes mostrar el mensaje de error en tu interfaz de usuario
+        // Por ejemplo, puedes actualizar un elemento HTML para mostrar el mensaje de error.
+        document.getElementById('carrito-comprado').innerText = "La solicitud ha fallado. Mensaje de error personalizado.";
+        throw new Error("La solicitud ha fallado.");
+    } else {
+        
+        document.getElementById('error-message').innerText = "La solicitud ha fallado. Mensaje de error personalizado.";
+        // Otras respuestas de error no manejadas
+        throw new Error("Error de solicitud: " + response.status);
+        
+    }
+    
+    }) // Lee la respuesta como texto
       .then((data) => {
-        preferenceId = data; // Guardar el id en la variable preferenceId
-        console.log(data);
+            if(data != 'token incorrecto'){
+                preferenceId = data;
+                console.log("esta todo bien")
+                mp.bricks().create("wallet", "wallet_container", {
+                    initialization: {
+                    preferenceId: preferenceId,
+                    },
+                });
+                 // Guardar el id en la variable preferenceId
+                console.log(data);
+            }
+            else{
+                console.log("la respuesta fallo")
+            
+                document.getElementById('carrito-comprado').innerText = "primero debe loguearse con su usuario y contraseña";
+            }
+        
         // Redirige el navegador a la URL
         //window.location.href = url;
 
         // Actualizar el objeto de inicialización
-    mp.bricks().create("wallet", "wallet_container", {
-        initialization: {
-          preferenceId: preferenceId,
-        },
-      });
+        
 
       })
 
