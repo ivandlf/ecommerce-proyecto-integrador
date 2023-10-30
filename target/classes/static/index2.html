@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda en Línea</title>
+    <!-- Agrega los enlaces a Bootstrap CSS y JS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Navbar con Menú Desplegable -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Tu Tienda</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Productos</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorías
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Ropa</a>
+                    <a class="dropdown-item" href="#">Electrónica</a>
+                    <a class="dropdown-item" href="#">Hogar</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Acerca de Nosotros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Ubicación</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contacto</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Carrusel de Promociones (Hero) -->
+<div id="promocionesCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#promocionesCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#promocionesCarousel" data-slide-to="1"></li>
+        <li data-target="#promocionesCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="imagenes/manichoco.jpg" class="d-block w-100" alt="Promoción 1">
+        </div>
+        <div class="carousel-item">
+            <img src="imagenes/pochoclo.jpg" class="d-block w-100" alt="Promoción 2">
+        </div>
+        <div class="carousel-item">
+            <img src="imagenes/tutuca2.jpg" class="d-block w-100" alt="Promoción 3">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#promocionesCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#promocionesCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Siguiente</span>
+    </a>
+</div>
+
+<!-- Acerca de Nosotros -->
+<section class="container mt-5">
+    <h2>Acerca de Nosotros</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida consectetur mi, sit amet tristique risus egestas vel.
+    </p>
+</section>
+
+<!-- Ubicación -->
+<section class="container mt-5">
+    <h2>Ubicación</h2>
+    <p>
+        Nuestra tienda está ubicada en [Dirección de la Tienda].
+    </p>
+</section>
+
+<!-- Contacto -->
+<section class="container mt-5">
+    <h2>Contacto</h2>
+    <p>
+        Para contactarnos, llámanos al [Número de Teléfono] o envíanos un correo electrónico a [Correo Electrónico].
+    </p>
+</section>
+
+</body>
+</html>
