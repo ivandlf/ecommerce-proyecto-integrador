@@ -20,7 +20,7 @@ header {
     max-width: 1200px;
     margin: auto;
     padding: 0 20px;
-    background-color:darkkhaki;
+    background-color: darkkhaki;
 
 }
 
@@ -29,7 +29,7 @@ h1 img {
     height: auto;
     display: flex;
     width: 95px;
-    
+
 }
 
 .letras-logo {
@@ -38,7 +38,7 @@ h1 img {
     font-size: 40px;
 }
 
-.logo{
+.logo {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,7 +47,7 @@ h1 img {
     padding: 10px;
 }
 
-.nav {
+/*.nav {
     width: 75%;
     height: 95px;
     display: flex;
@@ -56,42 +56,46 @@ h1 img {
     border-radius: 20px;
 }
 
-.boton-sign{
+
+
+.boton-sign {
     width: 75px;
-    background-color:#e5b20b ;
+    background-color: #e5b20b;
     color: white;
     border-radius: 20px;
 }
 
-.boton-login{
-    background-color:#e5b20b ;
+.boton-login {
+    background-color: #e5b20b;
     color: white;
     border-radius: 20px;
 }
 
-.menu{
-display: flex;
-flex-direction: row;
-margin: auto;
-margin-right: 400px;
+.menu {
+
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-right: 400px;
 
 }
 
-.menu li{
-padding: auto;
-margin: 27px;
-font-weight: bold;
-color: white;
-list-style: none;
-margin-top: 27px;
-margin-left: 32px;
-}
+.menu li {
+    padding: auto;
+    margin: 27px;
+    font-weight: bold;
+    color: white;
+    list-style: none;
+    margin-top: 27px;
+    margin-left: 32px;
+}*/
 
 ul a {
     text-decoration: none;
-  }
+}
 
-  .cart{
+.cart {
     background-color: white;
     width: 40px;
     height: 40px;
@@ -100,9 +104,9 @@ ul a {
     justify-items: center;
     color: #000000;
     margin-right: 10px;
-    margin-top: 0px;
+    margin-top: 50px;
     margin-bottom: 50px;
-  }
+}
 
 button.btn.btn-outline-success {
     color: #000000;
@@ -137,7 +141,7 @@ main {
 .slider {
     height: 150px;
     overflow: hidden;
-    
+
 }
 
 .slider ul {
@@ -183,31 +187,37 @@ main {
     height: 100px;
 }
 
-.promo{
+.promo {
     display: flex;
-    margin-left: 37px;
-    
-    
-}
-.card{
-    display: flex;
-    width: 237px;
-    height: 100px;
-    
+    flex-direction: row;
+    margin-left: 70px;
+    align-items: center;
+    flex-wrap: wrap;
 
 }
-.card-img{
+
+.card {
+    gap: 0px;
+    display: flex;
+    width: 350px;
+    height: 100px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+}
+
+.card-img {
     width: 50px;
     height: 150px;
-    
+
 }
 
 /* Estilos para la sección del mapa */
-.contenedor-mapa iframe{
+.contenedor-mapa iframe {
     width: 93.50%;
     margin: 20px auto;
-    
-    
+
+
 }
 
 .mapa {
@@ -288,17 +298,150 @@ footer img {
 
 /* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
-    .caja1 {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
+
+
+    
+.offcanvas{
+    width: 20%;
+    bottom: 0%;
+}
+    .cart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+        padding: 2px;
+        width: 32px;
+        height: 32px;
     }
 
-    nav ul {
-        margin-top: 10px;
-        flex-direction: column;
+    .caja1 {
+        display: flex;
+        flex-direction: row;
         align-items: flex-start;
+        padding: 3px;
+        min-width: 450px;
+        height: 100px;
+
     }
+
+    footer {
+        width: 100%;
+        min-width: 450px;
+    }
+
+    .slider {
+        height: 140px;
+    }
+
+    .video iframe {
+        width: 445px;
+        margin-left: 7px;
+
+    }
+
+    .imagen-diferenciales {
+        margin-left: 7px;
+        width: 445px;
+    }
+
+    .seccion1 {
+        margin-left: 12px;
+    }
+
+    .contenedor-mapa {
+        width: 100%;
+        margin: 10px auto;
+
+
+    }
+
+    .promo {
+        display: flex;
+        margin-left: 10px;
+        min-width: 450px;
+
+    }
+
+    .card {
+        display: flex;
+        width: 95%;
+        height: 100px;
+        min-width: 450px;
+        margin-left: 7px;
+
+    }
+
+    .card-img {
+        width: 50px;
+        height: 150px;
+
+    }
+
+    .botones-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 450px;
+        margin-left: 0px;
+    }
+
+    .btn.btn-secondary,
+    .btn.btn-success,
+    .btn.btn-danger,
+    .btn.btn-warning,
+    .btn.btn-info,
+    .btn.btn-light,
+    .btn.btn-dark,
+    .btn.btn-link {
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 40px;
+        height: 40px;
+        font-size: 5px;
+        font-weight: bold;
+    }
+
+
+
+    .contenedor-main-1 {
+        min-width: 450px;
+    }
+
+
+
+
+    .menu {
+        width: 95%;
+
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+        margin-right: 400px;
+
+    }
+
+    .menu li {
+        font-size: 10px;
+        padding: auto;
+        margin: 2px;
+        font-weight: bold;
+        color: white;
+        list-style: none;
+        margin-top: 35px;
+
+    }
+
+    header {
+        min-width: 450px;
+    }
+
+
+
+
+
 
     .seccion1 {
         margin-right: 0;
@@ -316,11 +459,15 @@ footer img {
     .mapa {
         padding: 20px;
         text-align: center;
+        margin-left: 20px;
+        width: 445px;
     }
 
     .caja2 {
         flex-direction: column;
         align-items: flex-start;
+        margin-left: 10px;
+
     }
 }
 
