@@ -51,7 +51,6 @@ public class CheckoutController {
                                 .unitPrice(new BigDecimal(producto.getPrecio()))
                                 .build();
                 items.add(itemRequest);
-                System.out.println(itemRequest);
             }
             PreferenceBackUrlsRequest backUrls =
 // ...
@@ -68,9 +67,6 @@ public class CheckoutController {
 
 
             PreferenceRequest request = PreferenceRequest.builder().backUrls(backUrls).build();
-// ...
-
-            System.out.println(preference.getId());
 
             return preference.getId();
         } catch (MPException | MPApiException e) {

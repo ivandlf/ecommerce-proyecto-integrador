@@ -11,13 +11,6 @@ document.addEventListener('click', e => {
         $signUp.classList.toggle('active')
         
     }
-    if (e.target == $btnSignIn){
-      console.log('boton sign in')
-    }
-    if (e.target == $btnSignUp){
-      console.log('boton sign up')
-      
-    }
 });
 
 btnIniciarSesion.addEventListener("click", iniciarSesion)
@@ -28,7 +21,6 @@ async function crearUsuario(){
   datos.nombre = document.getElementById('txtNombreSingUp').value;
   datos.email = document.getElementById('txtemailSingUp').value;
   datos.password = document.getElementById('txtpassSingUp').value;
-  console.log(datos)
   fetch('api/user', {
     method: 'POST',
     headers: {
@@ -39,18 +31,22 @@ async function crearUsuario(){
   })
   .then(response => {
     if(response.ok){
-      console.log("usuario creado con exito")
+      alert("usuario creado con exito");
+      document.getElementById('txtNombreSingUp').value = '';
+      document.getElementById('txtemailSingUp').value = '';
+      document.getElementById('txtpassSingUp').value = '';
+
     }else{
-      console.log("fallo al crear usuario")
+      alert("fallo al crear usuario")
     }
   })
+
 }
 
 async function iniciarSesion() {
     let datos = {};
     datos.email = document.getElementById('txtEmail').value;
     datos.password = document.getElementById('txtPassword').value;
-    console.log(datos)
   
     fetch('api/login', {
       method: 'POST',
@@ -67,7 +63,7 @@ async function iniciarSesion() {
     
           // Almacenar el token en el Local Storage
           localStorage.setItem('token', token);
-          alert('Sesion iniciada correctamente con el token')
+          alert('Sesion iniciada correctamente, Bienvenido')
           window.location.href='index.html'
         } else {
           // Manejar errores de autenticación
@@ -77,4 +73,6 @@ async function iniciarSesion() {
       .catch(error => {
         // Manejar otros errores
       });
+      datos.email.value = '';
+      datos.password.value = '';
   }

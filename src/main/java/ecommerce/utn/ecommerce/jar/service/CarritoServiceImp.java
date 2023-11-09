@@ -65,7 +65,6 @@ public class CarritoServiceImp implements CarritoService{
             if (productos!=null){
                 total += productos.getPrecio() * producto.getQuantity();
                 productosList.add(productos);
-                System.out.println(productos);
                 CarritoProductos carritoProductos = new CarritoProductos();
 
                 carritoProductos.setCarrito(newCarrito);

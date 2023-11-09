@@ -19,7 +19,6 @@ public class LoginController {
 
     @PostMapping("/api/login")
     public void login(@RequestBody AuthUserDTO authUserDTO, HttpServletResponse response) {
-        System.out.println("entrando al endpoint login");
         authenticateUserService.getUserByCredentials(authUserDTO, response);
     }
 }

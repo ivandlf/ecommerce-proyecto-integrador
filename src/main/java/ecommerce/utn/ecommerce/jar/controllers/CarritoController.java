@@ -32,7 +32,6 @@ public class CarritoController {
     public ResponseEntity<String> saveCarrito(@RequestHeader(value="Authorization") String token,
                                               @RequestBody CarritoDto carritoDto) throws InvalidTokenException {
         if (!validateToken.isValidToken(token)){
-            System.out.println("este es el token en el endpoint saveCarrito" + token);
             return ResponseEntity.badRequest().body("token invalido");
         }else{
             carritoService.save(carritoDto);
