@@ -1,18 +1,35 @@
-/* Estilos generales */
+/* Estilos globales del cuerpo de la página */
 body {
     font-family: 'Roboto', sans-serif;
     background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+    /* Fondo degradado oscuro */
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Estilos para el encabezado */ 
+/* Estilos para el contenedor principal */
+.contenedor {
+    width: 100%;
+    background-color: #F51E1E;
+    /* Fondo rojo */
+}
+
+/* Estilos para un carrusel con indicadores */
+#carouselExampleIndicators {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 6rem;
+}
+
+/* Estilos para el encabezado de la página */
 header {
     background-color: #e5b20b;
+    /* Fondo amarillo */
     padding: 20px 0;
 }
 
+/* Estilos para la caja del logotipo */
 .caja1 {
     display: flex;
     justify-content: space-between;
@@ -21,23 +38,25 @@ header {
     margin: auto;
     padding: 0 20px;
     background-color: darkkhaki;
-
+    /* Fondo marrón claro */
 }
 
+/* Estilos para la imagen del logotipo */
 h1 img {
     max-width: 100%;
     height: auto;
     display: flex;
     width: 95px;
-
 }
 
+/* Estilos para el texto del logotipo */
 .letras-logo {
     font-family: 'Licorice', cursive;
     color: white;
     font-size: 40px;
 }
 
+/* Estilos para el contenedor del logotipo */
 .logo {
     display: flex;
     justify-content: space-between;
@@ -47,54 +66,12 @@ h1 img {
     padding: 10px;
 }
 
-/*.nav {
-    width: 75%;
-    height: 95px;
-    display: flex;
-    background-color: #000000;
-    color: white;
-    border-radius: 20px;
-}
-
-
-
-.boton-sign {
-    width: 75px;
-    background-color: #e5b20b;
-    color: white;
-    border-radius: 20px;
-}
-
-.boton-login {
-    background-color: #e5b20b;
-    color: white;
-    border-radius: 20px;
-}
-
-.menu {
-
-    max-width: 1200px;
-    display: flex;
-    flex-direction: row;
-    margin: auto;
-    margin-right: 400px;
-
-}
-
-.menu li {
-    padding: auto;
-    margin: 27px;
-    font-weight: bold;
-    color: white;
-    list-style: none;
-    margin-top: 27px;
-    margin-left: 32px;
-}*/
-
+/* Estilos para los enlaces de la lista */
 ul a {
     text-decoration: none;
 }
 
+/* Estilos para un icono de carrito de compras */
 .cart {
     background-color: white;
     width: 40px;
@@ -108,6 +85,7 @@ ul a {
     margin-bottom: 50px;
 }
 
+/* Estilos para botones específicos */
 button.btn.btn-outline-success {
     color: #000000;
     font-weight: bold;
@@ -119,107 +97,44 @@ main {
     width: 100%;
 }
 
-.contenedor-main-1 {
-    width: 100%;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+/* Estilos para los elementos del carrusel */
+.carousel-item {
+    width: 150px;
 }
 
-.seccion1 {
-    display: flex;
-    width: 95%;
-    height: auto;
-    background-color: rgb(255, 235, 16);
-    margin: 0px auto;
-    margin-top: 20px;
-    border-radius: 20px
-}
-
-.slider {
-    height: 150px;
-    overflow: hidden;
-
-}
-
-.slider ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    display: flex;
-    animation: cambio 5s infinite alternate linear;
-    width: 400%;
-    height: auto;
-}
-
-.slider li {
-    width: 100%;
-    display: inline-block;
-    list-style: none;
-
-}
-
-.slider img {
-    width: 50%;
-    height: 37%;
-    border-radius: 20px
-}
-
-.botones-main {
-    display: flex;
-    justify-content: center;
-}
-
-
-.btn.btn-secondary,
-.btn.btn-success,
-.btn.btn-danger,
-.btn.btn-warning,
-.btn.btn-info,
-.btn.btn-light,
-.btn.btn-dark,
-.btn.btn-link {
-    margin: 20px;
-    width: 97px;
-    height: 100px;
-}
-
+/* Estilos para una sección de promoción */
 .promo {
     display: flex;
     flex-direction: row;
-    margin-left: 70px;
+    margin-left: 5rem;
     align-items: center;
     flex-wrap: wrap;
 
 }
 
+/* Estilos para una tarjeta */
 .card {
     gap: 0px;
     display: flex;
-    width: 350px;
-    height: 100px;
+    width: 200px;
+    height: 50px;
     margin-left: 20px;
     margin-bottom: 20px;
-
 }
 
+/* Estilos para una imagen de tarjeta */
 .card-img {
     width: 50px;
     height: 150px;
-
 }
 
-/* Estilos para la sección del mapa */
+/* Estilos para un contenedor de mapa con un iframe */
 .contenedor-mapa iframe {
     width: 93.50%;
     margin: 20px auto;
-
-
 }
 
+/* Estilos para el mapa */
 .mapa {
     background-color: #fff;
     padding-left: 95px;
@@ -227,21 +142,22 @@ main {
     width: 93.50%;
     margin-left: 40px;
     margin-top: 20px;
-
 }
 
+/* Estilos para párrafos */
 p {
     text-align: center;
     font-weight: 500;
 }
 
+/* Estilos para un título principal */
 .titulo-principal {
     padding-top: 20px;
     margin-left: 20px;
     padding-left: 30px;
 }
 
-/* Estilos para la caja2 */
+/* Estilos para una caja adicional */
 .caja2 {
     display: flex;
     flex-direction: row;
@@ -250,6 +166,7 @@ p {
 
 }
 
+/* Estilos para una imagen de diferencial */
 .imagen-diferenciales {
     width: 500px;
     height: 400px;
@@ -261,15 +178,18 @@ p {
     border-radius: 20px;
 }
 
+/* Estilos para una imagen de diferencial en estado hover */
 .imagen-diferenciales:hover {
     opacity: 0.3;
 }
 
+/* Estilos para un video embebido */
 .video {
     display: inline-block;
     margin-top: 40px;
 }
 
+/* Estilos para un iframe de video */
 iframe {
     width: 500px;
     margin-top: 5px;
@@ -280,31 +200,89 @@ iframe {
 /* Estilos para el pie de página */
 footer {
     background-color: #000000;
+    /* Fondo negro */
+    color: #fff;
     color: #fff;
     text-align: center;
     padding: 10px 0;
     margin-top: 40px;
 }
 
+/* Estilos para una imagen en el pie de página */
 footer img {
-    max-width: 7%;
     height: auto;
     margin-top: 20px;
 }
 
+/* Estilos para el texto de derechos de autor en el pie de página */
 .copyright {
     margin-top: 10px;
 }
 
-/* Media query para pantallas pequeñas */
+.logo-footer {
+  filter: invert(100%);
+  width: 155px;
+  margin-bottom: -31px;
+}
+
+
+/* Estilos para un menú desplegable en dispositivos móviles */
+.offcanvas {
+    width: 200px;
+}
+
+/* Estilos para el cuerpo de una tarjeta */
+.card-body {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Estilos para un botón primario */
+.btn.btn-primary {
+    display: flex;
+    align-items: end;
+    margin: auto;
+    background-color: darkgreen;
+    color: white;
+    border: 0px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-right: 32px;
+}
+
+/* Estilos para el estado hover de un botón primario */
+.btn.btn-primary:hover {
+    background-color: #000000;
+}
+
+/* Estilos para reglas de medios */
 @media (max-width: 768px) {
 
+    /* Estilos específicos para pantallas pequeñas */
+    .offcanvas {
+        width: 20%;
+    }
 
-    
-.offcanvas{
-    width: 20%;
-    bottom: 0%;
-}
+    .btn-close.btn-close-white {
+        font-size: 14px;
+        color: red;
+    }
+
+    #offcanvasDarkNavbarLabel {
+        font-size: 10px;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .contenedor {
+        width: 100%;
+        min-width: 500px;
+    }
+
     .cart {
         display: flex;
         align-items: center;
@@ -319,12 +297,12 @@ footer img {
 
     .caja1 {
         display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        padding: 3px;
-        min-width: 450px;
-        height: 100px;
-
+            flex-direction: row;
+            padding: 0px;
+            height: 100px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-around;
     }
 
     footer {
@@ -339,7 +317,6 @@ footer img {
     .video iframe {
         width: 445px;
         margin-left: 7px;
-
     }
 
     .imagen-diferenciales {
@@ -354,73 +331,36 @@ footer img {
     .contenedor-mapa {
         width: 100%;
         margin: 10px auto;
-
-
     }
 
     .promo {
         display: flex;
-        margin-left: 10px;
-        min-width: 450px;
-
+        justify-content: space-around;
+        margin-left: 1rem;
     }
 
     .card {
         display: flex;
-        width: 95%;
+        width: 45%;
         height: 100px;
-        min-width: 450px;
-        margin-left: 7px;
-
+        margin-left: -9px;
     }
 
     .card-img {
         width: 50px;
         height: 150px;
-
     }
-
-    .botones-main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 450px;
-        margin-left: 0px;
-    }
-
-    .btn.btn-secondary,
-    .btn.btn-success,
-    .btn.btn-danger,
-    .btn.btn-warning,
-    .btn.btn-info,
-    .btn.btn-light,
-    .btn.btn-dark,
-    .btn.btn-link {
-        margin-left: 5px;
-        margin-right: 5px;
-        width: 40px;
-        height: 40px;
-        font-size: 5px;
-        font-weight: bold;
-    }
-
-
 
     .contenedor-main-1 {
         min-width: 450px;
     }
 
-
-
-
     .menu {
         width: 95%;
-
         display: flex;
         flex-direction: row;
         margin: auto;
         margin-right: 400px;
-
     }
 
     .menu li {
@@ -431,17 +371,19 @@ footer img {
         color: white;
         list-style: none;
         margin-top: 35px;
-
     }
 
     header {
-        min-width: 450px;
+        width: 100%;
+        margin: 0px
     }
 
-
-
-
-
+    #carouselExampleIndicators {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 4rem;
+    }
 
     .seccion1 {
         margin-right: 0;
@@ -459,18 +401,18 @@ footer img {
     .mapa {
         padding: 20px;
         text-align: center;
-        margin-left: 20px;
-        width: 445px;
+        width: 450px;
+        margin-left: 17px;
     }
 
     .caja2 {
         flex-direction: column;
         align-items: flex-start;
         margin-left: 10px;
-
     }
 }
 
+/* Estilos para una animación de desplazamiento */
 @keyframes cambio {
     0% {
         margin-left: 0;
@@ -503,31 +445,4 @@ footer img {
     100% {
         margin-left: -300%;
     }
-}
-
-/* Pagina de productos */
-
-.card-body {
-    display: flex;
-    flex-direction: row;
-}
-
-/* Carrito de compras*/
-
-.btn.btn-primary {
-    display: flex;
-    align-items: end;
-    margin: auto;
-    background-color: darkgreen;
-    color: white;
-    border: 0px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 5px;
-    margin-right: 32px;
-
-}
-
-.btn.btn-primary:hover {
-    background-color: #000000;
 }
